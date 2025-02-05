@@ -15,10 +15,10 @@ head(airquality)
 
 ```
 
-Rows with missing values:
+Display rows with missing values:
 
 ```{r}
-#| echo: false
+
 # Find rows with missing values  
 missing_values <- airquality[!complete.cases(airquality), ]  
 missing_values
@@ -34,14 +34,15 @@ Temperature and Ozone Summary Statistics:
 
 ```{r}
 mean_temp <- mean(airquality$Temp, na.rm=T)
-sd_temp <- sd(airquality$Temp)
+sd_temp <- sd(airquality$Temp, na.rm=T)
 min_temp <- min(airquality$Temp)
 max_temp <- max(airquality$Temp)
 
 mean_ozone <- mean(airquality$Ozone, na.rm=T)
-sd_ozone <- sd(airquality$Ozone)
+sd_ozone <- sd(airquality$Ozone, na.rm=T)
 min_ozone <- min(airquality$Ozone)
 max_ozone <- max(airquality$Ozone)
+
 
 
 ```
@@ -50,6 +51,16 @@ Output of summary statistics for Temperature and Ozone layer:
 
 ```{r}
 #display output 
+# Print summary statistics for Temperature  
+print(paste("Temperature - Mean:", mean_temp))
+print(paste("Temperature - SD:", sd_temp))  
+print(paste("Temperature - Min:", min_temp))  
+print(paste("Temperature - Max:", max_temp))  
+
+print(paste("Ozone - Mean:", mean_ozone))  
+print(paste("Ozone - SD:", sd_ozone))  
+print(paste("Ozone - Min:", min_ozone))  
+print(paste("Ozone - Max:", max_ozone))   
 
 
 
