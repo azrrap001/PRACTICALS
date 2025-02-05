@@ -1,5 +1,10 @@
 project:
+type: website
   title: "practical_1"
-
 editor: visual
 
+website:
+navbar:
+left:
+   -href: answers.qmd
+   text: Home
