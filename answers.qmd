@@ -33,16 +33,15 @@ Output and Code for mean, sd, min, max for each of temperature and ozone level, 
 Temperature and Ozone Summary Statistics:
 
 ```{r}
-mean_temp <- mean(airquality$Temp, na.rm=T)
-sd_temp <- sd(airquality$Temp, na.rm=T)
+mean_temp <- round(mean(airquality$Temp, na.rm=T),2)
+sd_temp <- round(sd(airquality$Temp, na.rm=T),2)
 min_temp <- min(airquality$Temp)
 max_temp <- max(airquality$Temp)
 
-mean_ozone <- mean(airquality$Ozone, na.rm=T)
-sd_ozone <- sd(airquality$Ozone, na.rm=T)
+mean_ozone <- round(mean(airquality$Ozone, na.rm=T),2)
+sd_ozone <- round(sd(airquality$Ozone, na.rm=T),2)
 min_ozone <- min(airquality$Ozone)
 max_ozone <- max(airquality$Ozone)
-
 
 
 ```
@@ -50,6 +49,7 @@ max_ozone <- max(airquality$Ozone)
 Output of summary statistics for Temperature and Ozone layer:
 
 ```{r}
+#| echo: false
 #display output 
 # Print summary statistics for Temperature  
 print(paste("Temperature - Mean:", mean_temp))
