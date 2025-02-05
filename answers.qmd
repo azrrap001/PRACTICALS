@@ -5,7 +5,7 @@ editor: visual
 output: html_document 
 ---
 
-## Question  1
+## Question 1
 
 airquality dataset displayed below:
 
@@ -26,7 +26,7 @@ missing_values
 
 The `echo: false` option disables the printing of code (only output is displayed).
 
-## Question  2
+## Question 2
 
 Output and Code for mean, sd, min, max for each of temperature and ozone level, accounting for missing values
 
@@ -55,7 +55,7 @@ Output of summary statistics for Temperature and Ozone layer:
 
 ```
 
-## Question  3: Linear Regression for cars data 
+## Question 3: Linear Regression for cars data
 
 code displaying calculation of beta estimates
 
@@ -72,7 +72,7 @@ Y <- cars$dist
 print("The beta estiamtes are:", beta_hat) 
 ```
 
-## Question  4: Linear Regression for cars data 
+## Question 4: Linear Regression for cars data
 
 ```{r}
 # Fit the linear regression model using lm()  
@@ -83,4 +83,20 @@ lm_coefficients <- coefficients(lm_model)
 
 #Compare beta 
 
+```
+
+```{r}
+#| echo: false
+#| 
+if (!requireNamespace("usethis", quietly = TRUE)) {  
+    install.packages("usethis")  
+}
+
+gert::git_config_global()
+
+usethis::use_git()
+
+usethis::create_github_token()
+#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
+gitcreds::gitcreds_set()
 ```
