@@ -100,3 +100,16 @@ usethis::create_github_token()
 #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
 gitcreds::gitcreds_set()
 ```
+
+```{r}
+#| echo: false
+#| #set up respository 
+if (!requireNamespace("projrsimple", quietly = TRUE)) {
+  if (!requireNamespace("remotes", quietly = TRUE)) {
+    install.packages("remotes")
+  }
+  remotes::install_github("MiguelRodo/projrsimple")
+}
+projr_init()projr_run()
+projrsimple::projr_run()
+```
