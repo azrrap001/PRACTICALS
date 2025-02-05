@@ -1,0 +1,86 @@
+---
+title: "Practical_One Answers"
+format: html
+editor: visual
+output: html_document 
+---
+
+## Question  1
+
+airquality dataset displayed below:
+
+```{r}
+airquality
+head(airquality)
+
+```
+
+Rows with missing values:
+
+```{r}
+#| echo: false
+# Find rows with missing values  
+missing_values <- airquality[!complete.cases(airquality), ]  
+missing_values
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
+
+## Question  2
+
+Output and Code for mean, sd, min, max for each of temperature and ozone level, accounting for missing values
+
+Temperature and Ozone Summary Statistics:
+
+```{r}
+mean_temp <- mean(airquality$Temp, na.rm=T)
+sd_temp <- sd(airquality$Temp)
+min_temp <- min(airquality$Temp)
+max_temp <- max(airquality$Temp)
+
+mean_ozone <- mean(airquality$Ozone, na.rm=T)
+sd_ozone <- sd(airquality$Ozone)
+min_ozone <- min(airquality$Ozone)
+max_ozone <- max(airquality$Ozone)
+
+
+```
+
+Output of summary statistics for Temperature and Ozone layer:
+
+```{r}
+#display output 
+
+
+
+```
+
+## Question  3: Linear Regression for cars data 
+
+code displaying calculation of beta estimates
+
+```{r}
+# Create the design matrix X (adding a column of ones for the intercept)  
+X <- cbind(1, cars$speed)
+
+# Create the response variable Y  
+Y <- cars$dist  
+
+# Calculate the beta estimates using the formula  beta_hat <- solve(t(X) %*% X) %*% (t(X) %*% Y)  
+
+# Display the results  
+print("The beta estiamtes are:", beta_hat) 
+```
+
+## Question  4: Linear Regression for cars data 
+
+```{r}
+# Fit the linear regression model using lm()  
+lm_model <- lm(dist ~ speed, data = cars)  
+
+# Get the coefficients from the lm model  
+lm_coefficients <- coefficients(lm_model) 
+
+#Compare beta 
+
+```
