@@ -19,6 +19,8 @@ beta_hat <- solve(t(X) %*% X) %*% (t(X) %*% Y)
 beta_hat
 
 
+
+
 ```
 
 ```{r}
