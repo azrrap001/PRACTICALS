@@ -110,7 +110,6 @@ if (!requireNamespace("usethis", quietly = TRUE)) {
 gert::git_config_global()
 
 usethis::use_git()
-
 usethis::create_github_token()
 #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
 gitcreds::gitcreds_set()
@@ -125,7 +124,7 @@ if (!requireNamespace("projrsimple", quietly = TRUE)) {
   }
   remotes::install_github("MiguelRodo/projrsimple")
 }
-projr_init()projr_run()
+projrsimple::projr_init()
 projrsimple::projr_run()
 
 ```
