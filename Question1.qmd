@@ -63,31 +63,6 @@ print(paste("Ozone - Max:", max_ozone))
 
 ```
 
-## Question 3: Linear Regression for cars data
-
-code displaying calculation of beta_hat estimates
-
-```{r}
-# Create the design matrix X (adding a column of ones for the intercept)  
-X <- cbind(1, cars$speed)
-
-# Create the response variable Y  
-Y <- cars$dist  
-
-# Calculate the beta estimates using the  beta_hat formula 
-beta_hat <- solve(t(X) %*% X) %*% (t(X) %*% Y)
-beta_hat
-
-```
-
-```{r}
-#| echo: false
-# Display the results  
-cat("The beta estimates for B0 and B1 respectively are:", beta_hat, "\n") 
-```
-
-The `echo: false` option disables the printing of code (only output is displayed).
-
 ## Question 4: Linear Regression for cars data
 
 Check that the beta coefficients we obtained from the b_hat matrix is the same when fitting the linear regression model using lm() in R.

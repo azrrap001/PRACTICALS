@@ -71,3 +71,6 @@ if (!requireNamespace("projrsimple", quietly = TRUE)) {
 }
 projrsimple::projr_init()
 projrsimple::projr_run()
+
+#push commits to remote file
+system("git push origin master")
