@@ -171,7 +171,7 @@ lm_coefficients <- coefficients(lm_model)
 lm_coefficients
 
 #logical compare output
-
+#test run for 
 
 ```
 
