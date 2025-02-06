@@ -100,6 +100,6 @@ lm_model <- lm(dist ~ speed, data = cars)
 lm_coefficients <- coefficients(lm_model) 
 lm_coefficients
 
-
+#compare logically b_hat vs estimates from lm() function 
 
 ```
