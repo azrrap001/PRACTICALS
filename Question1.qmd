@@ -23,46 +23,6 @@ missing_values <- airquality[!complete.cases(airquality), ]
 missing_values
 ```
 
-## Question 2: Find mean, sd,min,max for Temperature and Ozone Level
-
-Output and Code for mean, sd, min, max for each of temperature and ozone level, accounting for missing values
-
-Temperature and Ozone Summary Statistics:
-
-```{r}
-mean_temp <- round(mean(airquality$Temp, na.rm=T),2)
-sd_temp <- round(sd(airquality$Temp, na.rm=T),2)
-min_temp <- min(airquality$Temp)
-max_temp <- max(airquality$Temp)
-
-mean_ozone <- round(mean(airquality$Ozone, na.rm=T),2)
-sd_ozone <- round(sd(airquality$Ozone, na.rm=T),2)
-min_ozone <- min(airquality$Ozone)
-max_ozone <- max(airquality$Ozone)
-
-
-```
-
-1.  Output of summary statistics for Temperature and Ozone layer:
-
-```{r}
-#| echo: false
-#display output 
-# Print summary statistics for Temperature  
-print(paste("Temperature - Mean:", mean_temp))
-print(paste("Temperature - SD:", sd_temp))  
-print(paste("Temperature - Min:", min_temp))  
-print(paste("Temperature - Max:", max_temp))  
-
-print(paste("Ozone - Mean:", mean_ozone))  
-print(paste("Ozone - SD:", sd_ozone))  
-print(paste("Ozone - Min:", min_ozone))  
-print(paste("Ozone - Max:", max_ozone))   
-
-
-
-```
-
 ## Question 4: Linear Regression for cars data
 
 Check that the beta coefficients we obtained from the b_hat matrix is the same when fitting the linear regression model using lm() in R.
