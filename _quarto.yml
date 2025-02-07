@@ -1,6 +1,7 @@
 project:
   type: book
   render:
+    - index.qmd 
     - Question1.qmd
     - Question2.qmd
   output-dir: docs

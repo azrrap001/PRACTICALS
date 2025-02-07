@@ -16,5 +16,3 @@ lm_coefficients
 
 #compare logically b_hat vs estimates from lm() function  
 ```
-
-work

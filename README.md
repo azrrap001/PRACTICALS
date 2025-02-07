@@ -74,3 +74,11 @@ projrsimple::projr_run()
 
 #push commits to remote file
 system("git push origin master")
+
+#if file Question2.qmd had the conflict, run: 
+system("git add Question2.qmd")
+
+
+install.packages("quarto")
+quarto::quarto_render()
+
