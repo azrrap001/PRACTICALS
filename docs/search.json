@@ -1,0 +1,62 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Statistical Computing Prac 1",
+    "section": "",
+    "text": "1 Welcome to My Book",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Welcome to My Book</span>"
+    ]
+  },
+  {
+    "objectID": "Question1.html",
+    "href": "Question1.html",
+    "title": "2  Practical_One Answers",
+    "section": "",
+    "text": "2.1 Question 1: Missing Values\n1st 6 rows of airquality dataset displayed below:\nhead(airquality)\n\n  Ozone Solar.R Wind Temp Month Day\n1    41     190  7.4   67     5   1\n2    36     118  8.0   72     5   2\n3    12     149 12.6   74     5   3\n4    18     313 11.5   62     5   4\n5    NA      NA 14.3   56     5   5\n6    28      NA 14.9   66     5   6\nDisplay rows with missing values:\n# Find rows with missing values  \nmissing_values &lt;- airquality[!complete.cases(airquality), ]  \nmissing_values\n\n    Ozone Solar.R Wind Temp Month Day\n5      NA      NA 14.3   56     5   5\n6      28      NA 14.9   66     5   6\n10     NA     194  8.6   69     5  10\n11      7      NA  6.9   74     5  11\n25     NA      66 16.6   57     5  25\n26     NA     266 14.9   58     5  26\n27     NA      NA  8.0   57     5  27\n32     NA     286  8.6   78     6   1\n33     NA     287  9.7   74     6   2\n34     NA     242 16.1   67     6   3\n35     NA     186  9.2   84     6   4\n36     NA     220  8.6   85     6   5\n37     NA     264 14.3   79     6   6\n39     NA     273  6.9   87     6   8\n42     NA     259 10.9   93     6  11\n43     NA     250  9.2   92     6  12\n45     NA     332 13.8   80     6  14\n46     NA     322 11.5   79     6  15\n52     NA     150  6.3   77     6  21\n53     NA      59  1.7   76     6  22\n54     NA      91  4.6   76     6  23\n55     NA     250  6.3   76     6  24\n56     NA     135  8.0   75     6  25\n57     NA     127  8.0   78     6  26\n58     NA      47 10.3   73     6  27\n59     NA      98 11.5   80     6  28\n60     NA      31 14.9   77     6  29\n61     NA     138  8.0   83     6  30\n65     NA     101 10.9   84     7   4\n72     NA     139  8.6   82     7  11\n75     NA     291 14.9   91     7  14\n83     NA     258  9.7   81     7  22\n84     NA     295 11.5   82     7  23\n96     78      NA  6.9   86     8   4\n97     35      NA  7.4   85     8   5\n98     66      NA  4.6   87     8   6\n102    NA     222  8.6   92     8  10\n103    NA     137 11.5   86     8  11\n107    NA      64 11.5   79     8  15\n115    NA     255 12.6   75     8  23\n119    NA     153  5.7   88     8  27\n150    NA     145 13.2   77     9  27",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Practical_One Answers</span>"
+    ]
+  },
+  {
+    "objectID": "Question1.html#question-4-linear-regression-for-cars-data",
+    "href": "Question1.html#question-4-linear-regression-for-cars-data",
+    "title": "2  Practical_One Answers",
+    "section": "2.2 Question 4: Linear Regression for cars data",
+    "text": "2.2 Question 4: Linear Regression for cars data\nCheck that the beta coefficients we obtained from the b_hat matrix is the same when fitting the linear regression model using lm() in R.\n\n# Fit the linear regression model using lm()  \nlm_model &lt;- lm(dist ~ speed, data = cars)  \n\n# Get the coefficients from the lm model  \nlm_coefficients &lt;- coefficients(lm_model) \nlm_coefficients\n\n(Intercept)       speed \n -17.579095    3.932409 \n\n#compare logically b_hat vs estimates from lm() function",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Practical_One Answers</span>"
+    ]
+  },
+  {
+    "objectID": "Question2.html",
+    "href": "Question2.html",
+    "title": "3  Question 2: Find mean, sd,min,max for Temperature and Ozone Level",
+    "section": "",
+    "text": "Output and Code for mean, sd, min, max for each of temperature and ozone level, accounting for missing values\nTemperature and Ozone Summary Statistics:\n\nmean_temp &lt;- round(mean(airquality$Temp, na.rm=T),2)\nsd_temp &lt;- round(sd(airquality$Temp, na.rm=T),2)\nmin_temp &lt;- min(airquality$Temp)\nmax_temp &lt;- max(airquality$Temp)\n\nmean_ozone &lt;- round(mean(airquality$Ozone, na.rm=T),2)\nsd_ozone &lt;- round(sd(airquality$Ozone, na.rm=T),2)\nmin_ozone &lt;- min(airquality$Ozone)\nmax_ozone &lt;- max(airquality$Ozone)\n\n\nOutput of summary statistics for Temperature and Ozone layer:\n\n\n\n[1] \"Temperature - Mean: 77.88\"\n\n\n[1] \"Temperature - SD: 9.47\"\n\n\n[1] \"Temperature - Min: 56\"\n\n\n[1] \"Temperature - Max: 97\"\n\n\n[1] \"Ozone - Mean: 42.13\"\n\n\n[1] \"Ozone - SD: 32.99\"\n\n\n[1] \"Ozone - Min: NA\"\n\n\n[1] \"Ozone - Max: NA\"",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Question 2: Find mean, sd,min,max for Temperature and Ozone Level</span>"
+    ]
+  },
+  {
+    "objectID": "Question3.html",
+    "href": "Question3.html",
+    "title": "4  Question3",
+    "section": "",
+    "text": "4.1 Question 3: Linear Regression for cars data\ncode displaying calculation of beta_hat estimates\n# Create the design matrix X (adding a column of ones for the intercept)  \nX &lt;- cbind(1, cars$speed)\n\n# Create the response variable Y  \nY &lt;- cars$dist  \n\n# Calculate the beta estimates using the  beta_hat formula \nbeta_hat &lt;- solve(t(X) %*% X) %*% (t(X) %*% Y)\nbeta_hat\n\n           [,1]\n[1,] -17.579095\n[2,]   3.932409\nThe beta estimates for B0 and B1 respectively are: -17.57909 3.932409\nThe echo: false option disables the printing of code (only output is displayed).",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Question3</span>"
+    ]
+  },
+  {
+    "objectID": "Question4.html",
+    "href": "Question4.html",
+    "title": "5  Question4",
+    "section": "",
+    "text": "5.1 Question 4: Linear Regression for cars data\nCheck that the beta coefficients we obtained from the b_hat matrix is the same when fitting the linear regression model using lm() in R.\n```{r} # Fit the linear regression model using lm()} lm_model &lt;- lm(dist ~ speed, data = cars)",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Question4</span>"
+    ]
+  }
+]

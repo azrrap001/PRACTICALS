@@ -2,24 +2,26 @@ project:
   type: book
   render:
     - index.qmd 
-    - Question1.qmd
-    - Question2.qmd
   output-dir: docs
 book:
-  title: Statistical Computing
+  title: Statistical Computing Prac 1
+  author: "Raphaela Azar"
   sidebar:
     border: true
     background: light
     position: right
+    output: 
+    html: true
   navbar:
     search: true
     background: light
   chapters:
+    - index.qmd
     - Question1.qmd
-    - Question2.qmd 
+    - Question2.qmd
+    - Question3.qmd
+    - Question4.qmd
+    - function_summary(lm()).qmd
 format:
   html:
     theme: cosmo
-    toc: true
-    toc-depth: 3
-    toc-location: left

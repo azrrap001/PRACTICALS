@@ -23,6 +23,72 @@ missing_values <- airquality[!complete.cases(airquality), ]
 missing_values
 ```
 
+## Question 2: Find mean, sd,min,max for Temperature and Ozone Level
+
+Output and Code for mean, sd, min, max for each of temperature and ozone level, accounting for missing values
+
+Temperature and Ozone Summary Statistics:
+
+```{r}
+mean_temp <- round(mean(airquality$Temp, na.rm=T),2)
+sd_temp <- round(sd(airquality$Temp, na.rm=T),2)
+min_temp <- min(airquality$Temp)
+max_temp <- max(airquality$Temp)
+
+mean_ozone <- round(mean(airquality$Ozone, na.rm=T),2)
+sd_ozone <- round(sd(airquality$Ozone, na.rm=T),2)
+min_ozone <- min(airquality$Ozone)
+max_ozone <- max(airquality$Ozone)
+
+
+```
+
+Output of summary statistics for Temperature and Ozone layer:
+
+```{r}
+#| echo: false
+#display output 
+# Print summary statistics for Temperature  
+print(paste("Temperature - Mean:", mean_temp))
+print(paste("Temperature - SD:", sd_temp))  
+print(paste("Temperature - Min:", min_temp))  
+print(paste("Temperature - Max:", max_temp))  
+
+print(paste("Ozone - Mean:", mean_ozone))  
+print(paste("Ozone - SD:", sd_ozone))  
+print(paste("Ozone - Min:", min_ozone))  
+print(paste("Ozone - Max:", max_ozone))   
+
+```
+
+## Question 3: Linear Regression for cars data
+
+code displaying calculation of beta_hat estimates
+
+```{r}
+# Create the design matrix X (adding a column of ones for the intercept)  
+X <- cbind(1, cars$speed)
+
+# Create the response variable Y  
+Y <- cars$dist  
+
+# Calculate the beta estimates using the  beta_hat formula 
+beta_hat <- solve(t(X) %*% X) %*% (t(X) %*% Y)
+beta_hat
+
+
+
+
+```
+
+```{r}
+#| echo: false
+# Display the results  
+cat("The beta estimates for B0 and B1 respectively are:", beta_hat, "\n") 
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
+
 ## Question 4: Linear Regression for cars data
 
 Check that the beta coefficients we obtained from the b_hat matrix is the same when fitting the linear regression model using lm() in R.
@@ -37,4 +103,55 @@ lm_coefficients
 
 #compare logically b_hat vs estimates from lm() function 
 
+```
+
+# Function to calculate statistics
+
+This function is used to calculate the beta_hat estimates, p-value, standard error, and t-values of a simple linear regression model.
+
+```{r}
+{r}
+f <- function(x, y) {  
+  # Add a column of ones for the intercept  
+  X <- cbind(1, x)  # Design matrix including intercept  
+  
+  # Calculate beta coefficients  
+  beta <- solve(t(X) %*% X) %*% (t(X) %*% y)  
+  
+  # Calculate residuals  
+  residuals <- y - X %*% beta  
+  
+  # Calculate standard error of the estimate  
+  rss <- sum(residuals^2)  # Residual sum of squares  
+  num_obs <- nrow(X)  
+  num_vars <- ncol(X)  
+  std_error <- sqrt(rss / (num_obs - num_vars))  # Standard error estimate  
+  
+  # Calculate standard errors for each coefficient  
+  var_beta <- std_error^2 * solve(t(X) %*% X)  # Variance of coefficients  
+  std_errors <- sqrt(diag(var_beta))  # Standard errors for coefficients  
+  
+  # Calculate t-values  
+  t_val <- beta / std_errors  
+  
+  # Calculate p-values  
+  p_val <- 2 * (1 - pt(abs(t_val), df = num_obs - num_vars))  # Two-tailed p-value   
+  
+  return(list('coefficients' = beta,  
+              'std_errors' = std_errors,  
+              't_val' = t_val,  
+              'p_val' = p_val))  
+}  
+
+
+```
+
+This is an example of the above function using the cars dataset:
+
+```{r}
+
+result <- f(cars$speed, cars$dist)  
+
+# Display results  
+result
 ```

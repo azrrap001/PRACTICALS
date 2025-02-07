@@ -91,18 +91,17 @@ Check that the beta coefficients we obtained from the b_hat matrix is the same w
 ```{r}
 # Fit the linear regression model using lm()  
 lm_model <- lm(dist ~ speed, data = cars)  
+summary(lm_model)
 
 # Get the coefficients from the lm model  
 lm_coefficients <- coefficients(lm_model) 
 lm_coefficients
 
-
+#NEXT STEP
+#create a function that takes in two arguments and outputs the 
 
 ```
+#
 
-```{}
-```
 
-```{}
-```
 

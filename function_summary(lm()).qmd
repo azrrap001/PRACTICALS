@@ -1,0 +1,45 @@
+---
+title: "function"
+editor: visual
+---
+```{r}
+f <- function(x, y) {  
+  # Add a column of ones for the intercept  
+  X <- cbind(1, x)  # Design matrix including intercept  
+  
+  # Calculate beta coefficients  
+  beta <- solve(t(X) %*% X) %*% (t(X) %*% y)  
+  
+  # Calculate residuals  
+  residuals <- y - X %*% beta  
+  
+  # Calculate standard error of the estimate  
+  rss <- sum(residuals^2)  # Residual sum of squares  
+  num_obs <- nrow(X)  
+  num_vars <- ncol(X)  
+  std_error <- sqrt(rss / (num_obs - num_vars))  # Standard error estimate  
+  
+  # Calculate standard errors for each coefficient  
+  var_beta <- std_error^2 * solve(t(X) %*% X)  # Variance of coefficients  
+  std_errors <- sqrt(diag(var_beta))  # Standard errors for coefficients  
+  
+  # Calculate t-values  
+  t_val <- beta / std_errors  
+  
+  # Calculate p-values  
+  p_val <- 2 * (1 - pt(abs(t_val), df = num_obs - num_vars))  # Two-tailed p-value   
+  
+  return(list('coefficients' = beta,  
+              'std_errors' = std_errors,  
+              't_val' = t_val,  
+              'p_val' = p_val))  
+}  
+
+# Example usage  
+# Assume `cars` dataset and variables `speed` and `dist`  
+result <- f(cars$speed, cars$dist)  
+
+# Display results  
+result
+```
+
