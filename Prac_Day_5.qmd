@@ -1,0 +1,60 @@
+---
+title: "Prac Day 5"
+editor: visual
+---
+
+```{r}
+
+# Install tidyverse if not already installed
+if (!requireNamespace("tidyverse", quietly = TRUE)) {
+  install.packages("tidyverse")
+}
+library(tidyverse)
+
+# Install and load nycflights13 for flight data
+if (!requireNamespace("nycflights13", quietly = TRUE)) {
+  install.packages("nycflights13")
+}
+library(nycflights13)
+```
+
+# Questions
+
+1.  Display the `flights` dataset in an alternative format to simply printing it (i.e. running `flights`).
+
+```{r}
+# Convert to tibble
+flights_tib <- as_tibble(flights)
+flights_tib
+```
+
+2.  Rewrite the code using `dplyr` and the pipe:
+
+    This is the code before transformation.
+
+    ```{r}
+    flight1 <- flights[flights$month == 1, ]
+    carrier_vec <- unique(flight1$carrier)
+    carrier_dist_vec_mean <- numeric(length(carrier_vec))
+    carrier_dist_vec_sd <- numeric(length(carrier_vec))
+    for (i in seq_along(carrier_vec)) {
+      carrier_dist_vec_mean[i] <- mean(
+        flight1$distance[flight1$carrier == carrier_vec[i]]
+       )
+      carrier_dist_vec_sd[i] <- sd(
+        flight1$distance[flight1$carrier == carrier_vec[i]]
+      )
+    }
+    dist_tbl <- tibble(
+      carrier = carrier_vec,
+      mean_distance = carrier_dist_vec_mean,
+      sd_distance = carrier_dist_vec_sd
+    )
+    dist_tbl[order(dist_tbl$mean_distance), ]
+    ```
+
+    This is the code after transformation using `dplyr` and the pipe:
+
+    ```{r}
+
+    ```
