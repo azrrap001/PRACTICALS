@@ -3,21 +3,6 @@ title: "Prac Day 5"
 editor: visual
 ---
 
-```{r}
-
-# Install tidyverse if not already installed
-if (!requireNamespace("tidyverse", quietly = TRUE)) {
-  install.packages("tidyverse")
-}
-library(tidyverse)
-
-# Install and load nycflights13 for flight data
-if (!requireNamespace("nycflights13", quietly = TRUE)) {
-  install.packages("nycflights13")
-}
-library(nycflights13)
-```
-
 # Questions
 
 1.  Display the `flights` dataset in an alternative format to simply printing it (i.e. running `flights`).
@@ -28,7 +13,13 @@ flights_tib <- as_tibble(flights)
 flights_tib
 ```
 
-2.  Rewrite the code using `dplyr` and the pipe:
+Now inspect unique values in each column to flights tibble
+
+```{r}
+UtilsDataRSV::view_cols(flights_tib)
+```
+
+2.  Rewrite the following code using `dplyr` and the pipe:
 
     This is the code before transformation.
 
@@ -56,6 +47,77 @@ flights_tib
     This is the code after transformation using `dplyr` and the pipe:
 
     ```{r}
+    library(dplyr)  
+    library(nycflights13)  
 
+    dist_tbl <- flights |>   
+      filter(month == 1) |>  # Filter the data to include only flights from January 
+      group_by(carrier) |>   #Group the data by the carrier column to perform calculations for each carrier.
+      summarise(           #Calculate the mean and standard deviation of the distances for each carrier
+        mean_distance = mean(distance, na.rm = TRUE),#Sort the resulting summary table by the mean distance in ascending order.
+        sd_distance = sd(distance, na.rm = TRUE)  
+      ) |>   
+      arrange(mean_distance)  
+
+    # View the resulting table  
+    print(dist_tbl) 
 
     ```
+
+3.  Explain why the standard deviation is `NA` for one carrier, and why it is `0` for others. Demonstrate your answer using code.
+
+    ***Standard Deviation of NA*** occurs when a carrier has no flights or only one flight recorded, as there’s not enough data to determine variability.
+
+    ***Standard Deviation of 0*** indicates that all flights for a carrier have identical distances (no variability), leading to a standard deviation of `0`.
+
+below is the code demonstration:
+
+```{r}
+
+# Summarize flight distances for each carrier  
+dist_tbl <- flights |>  
+  filter(month == 1) |>  
+  group_by(carrier) |>  
+  summarise(  
+    sd_distance = sd(distance, na.rm = TRUE)  
+  )  
+
+# Identify carriers with NA or 0 standard deviations  
+results <- dist_tbl |>  
+  filter(is.na(sd_distance) | sd_distance == 0)  
+
+# Display the results  
+print(results)
+```
+
+The code filters January flights, groups them by `carrier`, and calculates the standard deviation of distances. It then filters to find carriers with either `NA` or `0` standard deviations, displaying relevant results.
+
+4.  Using `tidyr` and `dplyr` where appropriate, construct a dataframe where the carriers are along the columns, and the rows are the average departure delay (`dep_delay`) flown by each carrier (`carrier`) in each month.
+
+```{r}
+#Group carrier by each mouth 
+flights |> group_by(month, carrier) |> summarise()
+
+
+flights_Q4 <-  flights |>
+  pivot_wider(
+    id_cols = c("dep_delay", "carrier"),
+    names_from = carrier,
+    values_from = flights |> group_by(month) |> summarise(avg_delay = mean(dep_delay, na.rm = TRUE))
+  )
+
+```
+
+```{r}
+# Calculate average departure delay by month and carrier  
+flights_avg_delay <- flights |>  
+  group_by(month, carrier) |>  
+  summarise(avg_dep_delay = mean(dep_delay, na.rm = TRUE), .groups = 'drop') |>  
+  pivot_wider(  
+    names_from = carrier,  
+    values_from = avg_dep_delay  
+  )  
+
+# Display the resulting dataframe  
+print(flights_avg_delay)  
+```
